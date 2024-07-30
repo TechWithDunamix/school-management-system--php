@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="style.css">
     <!-- Modernize js -->
     <script src="js/modernizr-3.6.0.min.js"></script>
+	 <!-- Custom JS -->
+	 <script type="module" src="js/custom/signup.js"></script>
+
     <style>
         #loader {
             display: none;
@@ -48,6 +51,12 @@
             animation: spin 1s ease-in-out infinite;
             margin-left: 10px;
         }
+
+		  .submit-btn-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		  }
         @keyframes spin {
             to {
                 transform: rotate(360deg);
@@ -68,17 +77,23 @@
     <div class="login-page-wrap">
         <div class="login-page-content">
             <div id="loader">
-                <img src="img/loader.gif" alt="Loading...">
+                <!-- <img src="img/loader.gif" alt="Loading..."> -->
             </div>
             <div class="login-box">
                 <div class="item-logo">
                     <img src="img/logo2.png" alt="logo">
                 </div>
-                <form action="" class="login-form" method="POST" id='login-form'>
+                <form class="login-form" id="login-form">
                     <div class="form-group">
                         <label>Full Name</label>
                         <input type="text" placeholder="Enter Full Name" class="form-control" name="username">
                         <i class="far fa-user"></i>
+                    </div>
+						   <div class="form-group">
+                        <label>Email</label>
+                        <p id="email-error" style="color: red;"></p>
+                        <input type="email" placeholder="Enter email" class="form-control" name="email">
+                        <i class="far fa-envelope"></i>
                     </div>
                     <div class="form-group">
                         <label>School Name</label>
@@ -87,17 +102,11 @@
                         <i class="far fa-user"></i>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <p id="email-error" style="color: red;"></p>
-                        <input type="email" placeholder="Enter email" class="form-control" name="email">
-                        <i class="far fa-envelope"></i>
-                    </div>
-                    <div class="form-group">
                         <label>Password</label>
                         <input type="password" placeholder="Enter password" class="form-control" name="password">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group submit-btn-wrapper">
                         <button type="submit" class="login-btn" id="submit-button">Signup</button>
                     </div>
                 </form>
@@ -120,49 +129,5 @@
     <script src="js/main.js"></script>
 </body>
 
-<script type="module">
-    $("#login-form").on("submit", (e) => {
-        e.preventDefault();
-        $("#email-error").html('');
-        $("#school_name-error").html('');
-        
-        // Disable all form fields and button
-        $("input").addClass("disabled").attr("disabled", true);
-        $("#submit-button").addClass("disabled").attr("disabled", true).append('<div class="button-loader"></div>');
 
-        const formData = {
-            username: $("input[name='username']").val(),
-            school_name: $("input[name='school_name']").val(),
-            email: $("input[name='email']").val(),
-            password: $("input[name='password']").val()
-        };
-
-        $.ajax({
-            url: 'backend/signup.php',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(formData),
-            success: function(response) {
-                $("#submit-button").find('.button-loader').remove();
-                $("input").removeClass("disabled").attr("disabled", false);
-                $("#submit-button").removeClass("disabled").attr("disabled", false);
-                window.location.href = 'index.php';
-            },
-            error: function(error) {
-                $("#submit-button").find('.button-loader').remove();
-                $("input").removeClass("disabled").attr("disabled", false);
-                $("#submit-button").removeClass("disabled").attr("disabled", false);
-                
-                try {
-                    const errorResponse = JSON.parse(error.responseText);
-                    $("#email-error").html(errorResponse.email);
-                    $("#school_name-error").html(errorResponse.school_name);
-                } catch (e) {
-                    console.error("Failed to parse error response:", e);
-                    console.error(error.responseText);
-                }
-            }
-        });
-    });
-</script>
 </html>

@@ -3,7 +3,7 @@
 // Database constants
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', '#dunamis2006');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'sms_test');
 
 // Site settings
