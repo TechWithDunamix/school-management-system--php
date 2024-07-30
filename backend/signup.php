@@ -79,7 +79,8 @@ if ($request_method === 'POST'){
         
         $_SESSION['email'] = $postdata['email'];
         $_SESSION['school_name'] = $postdata['school_name'];
-        
+        $_SESSION['school_id'] = $ref_id;
+
 
         echo json_encode(["success" => true,"message" => "User created"]);
     };
