@@ -18,8 +18,33 @@ $request_method = $_SERVER['REQUEST_METHOD'];
 if ($request_method == 'GET'){
     $database = new Database();
     $orm = new DatabaseHelper($database);
+    if (isset($_GET['student_id'])){
+        $student_id = $_GET['student_id'];
+        $whereClause = 'school_id = ? AND id = ?';
+        $params = [
+            $school_id,
+            $student_id
+        ];
+        $student = $orm->selectWhere('Students', $whereClause, $params);
+        if (!$student){
+        header("HTTP/1.1 404 bad Not found");
+
+        echo json_encode([
+            "error" => true,
+            "message" => "No student match the query"
+        ]);
+        exit ;
+        };
+        $response = array_slice($student,0,1);
+        echo json_encode($response);
+        exit ;
+
+
+    };
+    
     $students = $orm->selectWhere('Students', 'school_id = ?', [$school_id]);
     echo  json_encode($students);
+    exit ;
 
 };
 if ($request_method === 'POST'){
@@ -87,5 +112,85 @@ if ($request_method === 'POST'){
 
 };
 
+if ($request_method == 'PATCH'){
+    $rawPatchData = file_get_contents("php://input");
+    $patchdata = json_decode($rawPatchData, true);
+    $errors = [];
+    if (isset($_GET['student_id'])){
+        $student_id = $_GET['student_id'];
+        $whereClause = 'school_id = ? AND id = ?';
+        $params = [
+            $school_id,
+            $student_id
+        ];
+        $student = $orm->selectWhere('Students', $whereClause, $params);
+        if (!$student){
+        header("HTTP/1.1 404 bad Not found");
 
+        echo json_encode([
+            "error" => true,
+            "message" => "No student match the query"
+        ]);
+        exit ;
+        };
+        
+        $obj = $student[0];
+        
+        $swapped = [];
+        foreach ($obj as $key => &$value) {
+        if (isset($patchdata[$key])) {
+            $value = $patchdata[$key];
+            }
+        }
+        $date = new DateTime($obj['date_of_birth']);
+        $formattedDate = $date->format('Y/m/d');
+        $obj['date_of_birth'] = $formattedDate;
+
+        unset($obj['id']);
+        unset($obj['school_id']);
+        $orm->update('Students', $obj, $whereClause, $params = $params);
+        echo json_encode($obj);
+        exit ;
+
+
+    }else{
+        echo "Set student_id as a get param";
+        exit ;
+    }
+}
+if ($request_method== "DELETE"){
+    $rawPatchData = file_get_contents("php://input");
+    $patchdata = json_decode($rawPatchData, true);
+    $errors = [];
+    if (isset($_GET['student_id'])){
+        $student_id = $_GET['student_id'];
+        $whereClause = 'school_id = ? AND id = ?';
+        $params = [
+            $school_id,
+            $student_id
+        ];
+        $student = $orm->selectWhere('Students', $whereClause, $params);
+        if (!$student){
+        header("HTTP/1.1 404  Not found");
+
+        echo json_encode([
+            "error" => true,
+            "message" => "No student match the query"
+        ]);
+        exit ;
+        };
+        
+        $obj = $student[0];
+        $orm->delete('Students', "id = ?",[$obj['id']]);
+        
+        echo json_encode($obj);
+
+        exit ;
+
+
+    }else{
+        echo "Set student_id as a get param";
+        exit ;
+    }
+}
 ?>
