@@ -88,6 +88,7 @@ if ($request_method === 'POST'){
                         'school_id' => $ref_id,
                         "school_name",$postdata['school_name']
                     ]);
+        exit ;
     };
     
 
