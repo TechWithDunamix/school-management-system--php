@@ -8,7 +8,7 @@ $database = new Database();
 $orm = new DatabaseHelper($database);
 $school = $orm->selectColumnsWhere('Users', ['school_name', 'ref_id'], 'ref_id = ?', [$school_id]);
 if (!$school){
-    header("HTTP/1.1 400 bad BAD REQUEST");
+    header("HTTP/1.1 404 NOT FOUND ");
     
     echo "School not found";
     exit;
