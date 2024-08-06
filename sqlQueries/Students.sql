@@ -35,11 +35,11 @@ CREATE TABLE `Students` (
   `date_of_birth` date NOT NULL,
   `date_joined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `parent_phone` varchar(120) NOT NULL,
-  `id` varchar(120) NOT NULL,
+  `id` varchar(120) UNIQUE NOT NULL,
   `age` int NOT NULL,
   `gender` varchar(120) NOT NULL,
   `class` varchar(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

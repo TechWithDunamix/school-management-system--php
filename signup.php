@@ -83,7 +83,7 @@
                 <div class="item-logo">
                     <img src="img/logo2.png" alt="logo">
                 </div>
-                <form class="login-form" id="login-form">
+                <form class="login-form" id="login-form" method="POST">
                     <div class="form-group">
                         <label>Full Name</label>
                         <input type="text" placeholder="Enter Full Name" class="form-control" name="username">

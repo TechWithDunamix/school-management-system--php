@@ -270,7 +270,7 @@
                             <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Students</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-student.html" class="nav-link"><i class="fas fa-angle-right"></i>All
+                                    <a href="all-student.php" class="nav-link"><i class="fas fa-angle-right"></i>All
                                         Students</a>
                                 </li>
                                 <li class="nav-item">
@@ -278,7 +278,7 @@
                                             class="fas fa-angle-right"></i>Student Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="admit-form.html" class="nav-link"><i
+                                    <a href="admit-form.php" class="nav-link"><i
                                             class="fas fa-angle-right"></i>Admission Form</a>
                                 </li>
                                 <li class="nav-item">

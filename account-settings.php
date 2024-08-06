@@ -124,11 +124,11 @@
                                     <div class="media-body space-sm">
                                         <div class="item-title">
                                             <a href="#">
-                                                <span class="item-name">Maria Zaman</span> 
-                                                <span class="item-time">18:30</span> 
-                                            </a>  
+                                                <span class="item-name">Maria Zaman</span>
+                                                <span class="item-time">18:30</span>
+                                            </a>
                                         </div>
-                                        <p>What is the reason of buy this item. 
+                                        <p>What is the reason of buy this item.
                                         Is it usefull for me.....</p>
                                     </div>
                                 </div>
@@ -139,11 +139,11 @@
                                     <div class="media-body space-sm">
                                         <div class="item-title">
                                             <a href="#">
-                                                <span class="item-name">Benny Roy</span> 
-                                                <span class="item-time">10:35</span> 
-                                            </a>  
+                                                <span class="item-name">Benny Roy</span>
+                                                <span class="item-time">10:35</span>
+                                            </a>
                                         </div>
-                                        <p>What is the reason of buy this item. 
+                                        <p>What is the reason of buy this item.
                                         Is it usefull for me.....</p>
                                     </div>
                                 </div>
@@ -154,11 +154,11 @@
                                     <div class="media-body space-sm">
                                         <div class="item-title">
                                             <a href="#">
-                                                <span class="item-name">Steven</span> 
-                                                <span class="item-time">02:35</span> 
-                                            </a>  
+                                                <span class="item-name">Steven</span>
+                                                <span class="item-time">02:35</span>
+                                            </a>
                                         </div>
-                                        <p>What is the reason of buy this item. 
+                                        <p>What is the reason of buy this item.
                                         Is it usefull for me.....</p>
                                     </div>
                                 </div>
@@ -169,11 +169,11 @@
                                     <div class="media-body space-sm">
                                         <div class="item-title">
                                             <a href="#">
-                                                <span class="item-name">Joshep Joe</span> 
-                                                <span class="item-time">12:35</span> 
-                                            </a>  
+                                                <span class="item-name">Joshep Joe</span>
+                                                <span class="item-time">12:35</span>
+                                            </a>
                                         </div>
-                                        <p>What is the reason of buy this item. 
+                                        <p>What is the reason of buy this item.
                                         Is it usefull for me.....</p>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@
                         </div>
                     </li>
                      <li class="navbar-item dropdown header-language">
-                        <a class="navbar-nav-link dropdown-toggle" href="#" role="button" 
+                        <a class="navbar-nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe-americas"></i>EN</a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#">English</a>
@@ -269,13 +269,13 @@
                             <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Students</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-student.html" class="nav-link"><i class="fas fa-angle-right"></i>All Students</a>
+                                    <a href="all-student.php" class="nav-link"><i class="fas fa-angle-right"></i>All Students</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="student-details.html" class="nav-link"><i class="fas fa-angle-right"></i>Student Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="admit-form.html" class="nav-link"><i class="fas fa-angle-right"></i>Admission Form</a>
+                                    <a href="admit-form.php" class="nav-link"><i class="fas fa-angle-right"></i>Admission Form</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="student-promotion.html" class="nav-link"><i class="fas fa-angle-right"></i>Student Promotion</a>
@@ -442,7 +442,7 @@
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                             aria-expanded="false">...</a>
-        
+
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#"><i
                                                     class="fas fa-times text-orange-red"></i>Close</a>
@@ -554,7 +554,7 @@
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>ID No *</label>
                                             <input type="text" placeholder="" class="form-control">
-                                        </div>                               
+                                        </div>
                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
                                             <label>Phone</label>
                                             <input type="text" placeholder="" class="form-control">
@@ -563,7 +563,7 @@
                                             <label>Adress *</label>
                                             <textarea class="textarea form-control" name="message" id="form-message" cols="10"
                                                 rows="4"></textarea>
-                                        </div> 
+                                        </div>
                                         <div class="col-12 form-group mg-t-8">
                                             <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
                                             <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
@@ -581,9 +581,9 @@
                                         <h3>All User</h3>
                                     </div>
                                     <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" 
+                                        <a class="dropdown-toggle" href="#" role="button"
                                         data-toggle="dropdown" aria-expanded="false">...</a>
-                
+
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
                                             <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
@@ -649,9 +649,9 @@
                                         <h3>User Details</h3>
                                     </div>
                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" href="#" role="button" 
+                                        <a class="dropdown-toggle" href="#" role="button"
                                         data-toggle="dropdown" aria-expanded="false">...</a>
-                
+
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
                                             <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>

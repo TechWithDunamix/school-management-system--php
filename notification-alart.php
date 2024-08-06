@@ -270,7 +270,7 @@
                             <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Students</span></a>
                             <ul class="nav sub-group-menu">
                                 <li class="nav-item">
-                                    <a href="all-student.html" class="nav-link"><i class="fas fa-angle-right"></i>All
+                                    <a href="all-student.php" class="nav-link"><i class="fas fa-angle-right"></i>All
                                         Students</a>
                                 </li>
                                 <li class="nav-item">
@@ -278,7 +278,7 @@
                                             class="fas fa-angle-right"></i>Student Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="admit-form.html" class="nav-link"><i
+                                    <a href="admit-form.php" class="nav-link"><i
                                             class="fas fa-angle-right"></i>Admission Form</a>
                                 </li>
                                 <li class="nav-item">
@@ -470,9 +470,9 @@
                                 <h3>Default Alert</h3>
                             </div>
                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" 
+                                <a class="dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-expanded="false">...</a>
-        
+
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
                                     <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
@@ -508,9 +508,9 @@
                                 <h3>Dismissing Alerts</h3>
                             </div>
                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" 
+                                <a class="dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-expanded="false">...</a>
-        
+
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
                                     <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
@@ -561,9 +561,9 @@
                                 <h3>Colored Alerts With Icons</h3>
                             </div>
                             <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" 
+                                <a class="dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-expanded="false">...</a>
-        
+
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
                                     <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
