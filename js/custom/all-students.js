@@ -1,6 +1,6 @@
 import { callApi, select } from "./lib.js";
 
-const createStudentDetailsRow = (studentData) => `<tr>
+const createStudentDetailsRow = (studentData) => `<tr data-student-id=${studentData.id}>
 										<td>
 											<div class="form-check">
 												<input type="checkbox" class="form-check-input">
@@ -21,13 +21,24 @@ const createStudentDetailsRow = (studentData) => `<tr>
 													<span class="flaticon-more-button-of-three-dots"></span>
 												</a>
 												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
-													<a class="fas fa-cogs text-dark-pastel-green" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+													<a data-id="delete-btn" class="dropdown-item text-orange-red" href="#"><i class="fas fa-times text-orange-red"></i>Delete</a>
+													<a data-id="edit-btn" class="dropdown-item text-dark-pastel-green " href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
 													<a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
 												</div>
 											</div>
 										</td>
 									</tr>`;
+
+const deleteStudent = async (studentId) => {
+	const { data } = await callApi("backend/students.php", {
+		method: "DELETE",
+		query: { school_id: localStorage.getItem("school_id"), student_id: studentId },
+
+		onResponse: () => {
+			select(`tr[data-student-id="${studentId}"]`).remove();
+		},
+	});
+};
 
 const fetchAndDisplayStudentsDetails = async () => {
 	const { data } = await callApi("backend/students.php", {
@@ -36,7 +47,9 @@ const fetchAndDisplayStudentsDetails = async () => {
 
 	if (!data || data.length === 0) return;
 
-	select("#table-body .odd")?.remove();
+	const tableBody = select("#table-body");
+
+	tableBody.querySelector(".odd")?.remove();
 
 	let content = "";
 
@@ -44,7 +57,13 @@ const fetchAndDisplayStudentsDetails = async () => {
 		content += createStudentDetailsRow(studentData);
 	}
 
-	select("#table-body").insertAdjacentHTML("beforeend", content);
+	tableBody.insertAdjacentHTML("beforeend", content);
+
+	for (const studentData of data) {
+		const deleteBtn = select(`tr[data-student-id="${studentData.id}"] [data-id="delete-btn"]`);
+
+		deleteBtn.addEventListener("click", () => deleteStudent(studentData.id));
+	}
 };
 
 fetchAndDisplayStudentsDetails();
