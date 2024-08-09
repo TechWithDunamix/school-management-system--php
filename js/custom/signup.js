@@ -1,5 +1,7 @@
 import { callApi, select } from "./lib.js";
 
+const signupForm = select("#signup-form");
+
 const onSubmit = (event) => {
 	event.preventDefault();
 
@@ -35,11 +37,17 @@ const onSubmit = (event) => {
 			select("#submit-button").removeAttribute("disabled");
 			select("#submit-button .button-loader").remove();
 
-			select("#email-error").innerHTML = errorData.email ?? "";
+			signupForm.querySelector("input[name='email']").setCustomValidity(errorData.email ?? "");
 
-			select("#school_name-error").innerHTML = errorData.school_name ?? "";
+			signupForm.querySelector("input[name='email']").reportValidity();
+
+			signupForm
+				.querySelector("input[name='school_name']")
+				.setCustomValidity(errorData.school_name ?? "");
+
+			signupForm.querySelector("input[name='school_name']").reportValidity();
 		},
 	});
 };
 
-select("#login-form").addEventListener("submit", onSubmit);
+signupForm.addEventListener("submit", onSubmit);

@@ -11,4 +11,4 @@ export const select = (value) => document.querySelector(value);
  */
 export const selectAll = (value) => document.querySelectorAll(value);
 
-export { callApi } from "https://esm.run/@zayne-labs/callapi@0.5.1";
+export { callApi } from "https://esm.run/@zayne-labs/callapi@0.5.4";

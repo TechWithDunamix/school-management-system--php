@@ -4,7 +4,7 @@ const createStudentDetailsRow = (studentData) => `<tr>
 										<td>
 											<div class="form-check">
 												<input type="checkbox" class="form-check-input">
-												<label class="form-check-label">#0021</label>
+												<label class="form-check-label">#${studentData.id.slice(0, 4)}</label>
 											</div>
 										</td>
 										<td class="text-center"><img src="img/figure/student2.png" alt="student"></td>
@@ -36,7 +36,7 @@ const fetchAndDisplayStudentsDetails = async () => {
 
 	if (!data || data.length === 0) return;
 
-	select("#table-body .odd").remove();
+	select("#table-body .odd")?.remove();
 
 	let content = "";
 

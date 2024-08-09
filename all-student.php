@@ -28,10 +28,12 @@
 	<link rel="stylesheet" href="css/jquery.dataTables.min.css">
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="style.css">
+
 	<!-- Modernize js -->
 	<script src="js/modernizr-3.6.0.min.js"></script>
 
 	<script type="module" src="js/custom/all-students.js"></script>
+
 </head>
 
 <body>
@@ -495,6 +497,67 @@
 									</tr>
 								</thead>
 								<tbody id="table-body">
+									<!-- Injected via JavaScript -->
+									<tr>
+										<td>
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">#0021</label>
+											</div>
+										</td>
+										<td class="text-center"><img src="img/figure/student2.png" alt="student"></td>
+										<td>Mark Willy</td>
+										<td>Male</td>
+										<td>2</td>
+										<td>A</td>
+										<td>Jack Sparrow </td>
+										<td>TA-107 Newyork</td>
+										<td>02/05/2001</td>
+										<td>+ 123 9988568</td>
+										<td>kazifahim93@gmail.com</td>
+										<td>
+											<div class="dropdown">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+													<span class="flaticon-more-button-of-three-dots"></span>
+												</a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+													<a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+													<a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input">
+												<label class="form-check-label">#0021</label>
+											</div>
+										</td>
+										<td class="text-center"><img src="img/figure/student2.png" alt="student"></td>
+										<td>Mark Willy</td>
+										<td>Male</td>
+										<td>2</td>
+										<td>A</td>
+										<td>Jack Sparrow </td>
+										<td>TA-107 Newyork</td>
+										<td>02/05/2001</td>
+										<td>+ 123 9988568</td>
+										<td>kazifahim93@gmail.com</td>
+										<td>
+											<div class="dropdown">
+												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+													<span class="flaticon-more-button-of-three-dots"></span>
+												</a>
+												<div class="dropdown-menu dropdown-menu-right">
+													<a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+													<a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+													<a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+												</div>
+											</div>
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
