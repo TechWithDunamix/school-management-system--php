@@ -29,14 +29,12 @@ const createStudentDetailsRow = (studentData) => `<tr data-student-id=${studentD
 										</td>
 									</tr>`;
 
-const deleteStudent = async (studentId) => {
-	const { data } = await callApi("backend/students.php", {
+const deleteStudent = (studentId) => {
+	callApi("backend/students.php", {
 		method: "DELETE",
 		query: { school_id: localStorage.getItem("school_id"), student_id: studentId },
 
-		onResponse: () => {
-			select(`tr[data-student-id="${studentId}"]`).remove();
-		},
+		onResponse: () => select(`tr[data-student-id="${studentId}"]`).remove(),
 	});
 };
 
@@ -49,7 +47,7 @@ const fetchAndDisplayStudentsDetails = async () => {
 
 	const tableBody = select("#table-body");
 
-	tableBody.querySelector(".odd")?.remove();
+	select(".odd", tableBody)?.remove();
 
 	let content = "";
 
