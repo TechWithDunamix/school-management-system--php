@@ -29,7 +29,7 @@ const onSubmit = (event) => {
 			data?.school_id && localStorage.setItem("school_id", data.school_id);
 			data?.email && localStorage.setItem("email", data.email);
 
-			window.location.href = "index.php";
+			window.location.href = "index.html";
 		},
 
 		onResponseError: ({ errorData }) => {

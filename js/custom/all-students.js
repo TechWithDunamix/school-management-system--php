@@ -16,25 +16,31 @@ const createStudentDetailsRow = (studentData) => `<tr data-student-id=${studentD
 										<td>${studentData.parent_phone}</td>
 										<td>${studentData.date_of_birth}</td>
 										<td>
-											<div class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-													<span class="flaticon-more-button-of-three-dots"></span>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a data-id="delete-btn" class="dropdown-item text-orange-red" href="#"><i class="fas fa-times text-orange-red"></i>Delete</a>
-													<a data-id="edit-btn" class="dropdown-item text-dark-pastel-green " href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-													<a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-												</div>
-											</div>
+											<div class="flex gap-1">
+																<a
+																	href="admit-form.html?id=${studentData.id}"
+																	class="btn btn-primary shadow btn-xs sharp me-1"
+																	><i class="fas fa-pencil-alt"></i
+																></a>
+																<button data-id="delete-btn" class="btn btn-danger shadow btn-xs sharp"
+																	><i class="fa fa-trash"></i
+																></button>
+															</div>
 										</td>
 									</tr>`;
 
 const deleteStudent = (studentId) => {
+	const shouldDelete = confirm("Are you sure you want to delete this student's record?");
+
+	if (!shouldDelete) return;
+
 	callApi("backend/students.php", {
 		method: "DELETE",
 		query: { school_id: localStorage.getItem("school_id"), student_id: studentId },
 
-		onResponse: () => select(`tr[data-student-id="${studentId}"]`).remove(),
+		onResponse: () => {
+			select(`tr[data-student-id="${studentId}"]`).remove();
+		},
 	});
 };
 
@@ -49,16 +55,15 @@ const fetchAndDisplayStudentsDetails = async () => {
 
 	select(".odd", tableBody)?.remove();
 
-	let content = "";
+	const htmlContent = data.map((studentData) => createStudentDetailsRow(studentData)).join("");
+
+	tableBody.insertAdjacentHTML("beforeend", htmlContent);
 
 	for (const studentData of data) {
-		content += createStudentDetailsRow(studentData);
-	}
-
-	tableBody.insertAdjacentHTML("beforeend", content);
-
-	for (const studentData of data) {
-		const deleteBtn = select(`tr[data-student-id="${studentData.id}"] [data-id="delete-btn"]`);
+		const deleteBtn = select(
+			`tr[data-student-id="${studentData.id}"] [data-id="delete-btn"]`,
+			tableBody
+		);
 
 		deleteBtn.addEventListener("click", () => deleteStudent(studentData.id));
 	}
