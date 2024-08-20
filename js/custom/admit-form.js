@@ -2,7 +2,7 @@ import { callApi, select } from "./lib.js";
 
 const admitForm = select("#admit-form");
 
-const studentId = new URLSearchParams(location.search).get("id");
+const student_id = new URLSearchParams(location.search).get("id");
 
 const onSubmit = (event) => {
 	event.preventDefault();
@@ -16,17 +16,23 @@ const onSubmit = (event) => {
 	select("#submit-button").insertAdjacentHTML("beforeend", '<div class="button-loader"></div>');
 
 	callApi("backend/students.php", {
-		method: studentId ? "PATCH" : "POST",
+		method: student_id ? "PATCH" : "POST",
 		body: formObject,
 		query: {
 			school_id: localStorage.getItem("school_id"),
-			...(Boolean(studentId) && { student_id: studentId }),
+			...(Boolean(student_id) && { student_id }),
 		},
-		onRequestError: () => {
+		onResponse: () => {
+			window.location.href = "all-students.html";
+		},
+
+		onError: () => {
 			select("#submit-button").classList.remove("disabled");
 			select("#submit-button").removeAttribute("disabled");
 			select("#submit-button .button-loader").remove();
+		},
 
+		onRequestError: () => {
 			select("#general-error").textContent =
 				"An error occurred while submitting the form. Please try again later.";
 
@@ -35,17 +41,6 @@ const onSubmit = (event) => {
 				block: "end",
 			});
 		},
-
-		onResponse: ({ data }) => {
-			console.log(data);
-			window.location.href = "all-students.html";
-		},
-
-		onResponseError: () => {
-			select("#submit-button").classList.remove("disabled");
-			select("#submit-button").removeAttribute("disabled");
-			select("#submit-button .button-loader").remove();
-		},
 	});
 };
 
@@ -53,15 +48,15 @@ const populateLateForm = () => {
 	callApi("backend/students.php", {
 		query: {
 			school_id: localStorage.getItem("school_id"),
-			student_id: studentId,
+			student_id,
 		},
 
 		onResponse: ({ data }) => {
-			const studentData = data[0];
+			const studentData = data.data;
 			const allElementsArray = Array.from(admitForm.elements);
 
 			// prettier-ignore
-			const requiredFormElements = allElementsArray.filter((item) =>Object.keys(studentData).includes(item.name));
+			const requiredFormElements = allElementsArray.filter((item) => Object.keys(studentData).includes(item.name));
 
 			for (const requiredFormElement of requiredFormElements) {
 				const inputValue = studentData[requiredFormElement.name];
@@ -72,6 +67,6 @@ const populateLateForm = () => {
 	});
 };
 
-studentId && populateLateForm();
+student_id && populateLateForm();
 
 admitForm.addEventListener("submit", onSubmit);

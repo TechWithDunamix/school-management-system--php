@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html class="no-js" lang="">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		<title>AKKHOR | Login</title>
+		<title>AKKHOR | Signup</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- Favicon -->
@@ -25,6 +24,52 @@
 		<link rel="stylesheet" href="style.css" />
 		<!-- Modernize js -->
 		<script src="js/modernizr-3.6.0.min.js"></script>
+		<!-- Custom JS -->
+		<script type="module" src="js/custom/login.js"></script>
+
+		<style>
+			#loader {
+				display: none;
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 9999;
+			}
+
+			#loader img {
+				width: 50px;
+				height: 50px;
+			}
+
+			.button-loader {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				border: 3px solid rgba(255, 255, 255, 0.3);
+				border-radius: 50%;
+				border-top-color: #fff;
+				animation: spin 1s ease-in-out infinite;
+				margin-left: 10px;
+			}
+
+			.submit-btn-wrapper {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			@keyframes spin {
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			.disabled {
+				pointer-events: none;
+				opacity: 0.5;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -38,15 +83,31 @@
 					<div class="item-logo">
 						<img src="img/logo2.png" alt="logo" />
 					</div>
-					<form class="login-form">
+
+					<p id="general-error" class="text-red"></p>
+
+					<form class="login-form" id="login-form" method="POST">
 						<div class="form-group">
-							<label>Username</label>
-							<input type="text" placeholder="Enter username" class="form-control" />
+							<label>Email</label>
+							<input
+								type="email"
+								placeholder="Enter email"
+								class="form-control"
+								name="email"
+								required
+							/>
 							<i class="far fa-envelope"></i>
 						</div>
+
 						<div class="form-group">
 							<label>Password</label>
-							<input type="text" placeholder="Enter password" class="form-control" />
+							<input
+								type="password"
+								placeholder="Enter password"
+								class="form-control"
+								name="password"
+								required
+							/>
 							<i class="fas fa-lock"></i>
 						</div>
 						<div class="form-group d-flex align-items-center justify-content-between">
@@ -56,29 +117,13 @@
 							</div>
 							<a href="#" class="forgot-btn">Forgot Password?</a>
 						</div>
-						<div class="form-group">
-							<button type="submit" class="login-btn">Login</button>
+
+						<div class="form-group submit-btn-wrapper">
+							<button type="submit" class="login-btn" id="submit-button">Login</button>
 						</div>
 					</form>
-					<div class="login-social">
-						<p>or sign in with</p>
-						<ul>
-							<li>
-								<a href="#" class="bg-fb"><i class="fab fa-facebook-f"></i></a>
-							</li>
-							<li>
-								<a href="#" class="bg-twitter"><i class="fab fa-twitter"></i></a>
-							</li>
-							<li>
-								<a href="#" class="bg-gplus"><i class="fab fa-google-plus-g"></i></a>
-							</li>
-							<li>
-								<a href="#" class="bg-git"><i class="fab fa-github"></i></a>
-							</li>
-						</ul>
-					</div>
 				</div>
-				<div class="sign-up">Don't have an account ? <a href="#">Signup now!</a></div>
+				<div class="sign-up">Don't have an account ? <a href="signup.html">Signup now!</a></div>
 			</div>
 		</div>
 		<!-- Login Page End Here -->

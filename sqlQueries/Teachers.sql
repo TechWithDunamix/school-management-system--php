@@ -32,7 +32,7 @@ CREATE TABLE `Teachers` (
   `last_name` varchar(50) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `date_of_birth` date NOT NULL,
-  `id` varchar(56) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id` varchar(56) CHARACTER SET utf8mb4 NOT NULL,
   `blood_group` varchar(3) DEFAULT NULL,
   `religion` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `Teachers` (
   `phone` varchar(20) DEFAULT NULL,
   `school_id` varchar(120) NOT NULL,
   `date_joined` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `Teachers`

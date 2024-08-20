@@ -44,29 +44,42 @@ const deleteStudent = (studentId) => {
 	});
 };
 
-const fetchAndDisplayStudentsDetails = async () => {
-	const { data } = await callApi("backend/students.php", {
+const fetchAndDisplayStudentsDetails = () => {
+	callApi("backend/students.php", {
 		query: { school_id: localStorage.getItem("school_id") },
+		onError: ({ errorData, error }) => {
+			if (errorData) {
+				console.log(error.message);
+				return;
+			}
+
+			if (error) {
+				console.log(error.message);
+			}
+		},
+		onResponse: ({ data }) => {
+			if (data.data.length === 0) return;
+
+			const tableBody = select("#table-body");
+
+			select(".odd", tableBody)?.remove();
+
+			const htmlContent = data.data
+				.map((studentData) => createStudentDetailsRow(studentData))
+				.join("");
+
+			tableBody.insertAdjacentHTML("beforeend", htmlContent);
+
+			for (const studentData of data.data) {
+				const deleteBtn = select(
+					`tr[data-student-id="${studentData.id}"] [data-id="delete-btn"]`,
+					tableBody
+				);
+
+				deleteBtn.addEventListener("click", () => deleteStudent(studentData.id));
+			}
+		},
 	});
-
-	if (!data || data.length === 0) return;
-
-	const tableBody = select("#table-body");
-
-	select(".odd", tableBody)?.remove();
-
-	const htmlContent = data.map((studentData) => createStudentDetailsRow(studentData)).join("");
-
-	tableBody.insertAdjacentHTML("beforeend", htmlContent);
-
-	for (const studentData of data) {
-		const deleteBtn = select(
-			`tr[data-student-id="${studentData.id}"] [data-id="delete-btn"]`,
-			tableBody
-		);
-
-		deleteBtn.addEventListener("click", () => deleteStudent(studentData.id));
-	}
 };
 
 fetchAndDisplayStudentsDetails();

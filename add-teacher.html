@@ -29,6 +29,9 @@
 		<link rel="stylesheet" href="style.css" />
 		<!-- Modernize js -->
 		<script src="js/modernizr-3.6.0.min.js"></script>
+
+		<script type="module" src="js/custom/checkCookies.js"></script>
+		<script type="module" src="js/custom/add-teacher.js"></script>
 	</head>
 
 	<body>
@@ -344,7 +347,7 @@
 								>
 								<ul class="nav sub-group-menu sub-group-active">
 									<li class="nav-item">
-										<a href="all-teacher.html" class="nav-link"
+										<a href="all-teachers.html" class="nav-link"
 											><i class="fas fa-angle-right"></i>All Teachers</a
 										>
 									</li>
@@ -567,6 +570,8 @@
 					<!-- Add New Teacher Area Start Here -->
 					<div class="card height-auto">
 						<div class="card-body">
+							<p id="general-error" class="text-red"></p>
+
 							<div class="heading-layout1">
 								<div class="item-title">
 									<h3>Add New Teacher</h3>
@@ -594,118 +599,115 @@
 									</div>
 								</div>
 							</div>
-							<form class="new-added-form">
+							<form id="add-teacher-form" class="new-added-form">
 								<div class="row">
 									<div class="col-xl-3 col-lg-6 col-12 form-group">
 										<label>First Name *</label>
-										<input type="text" placeholder="" class="form-control" />
+										<input
+											name="first_name"
+											type="text"
+											placeholder=""
+											class="form-control"
+											required
+										/>
 									</div>
 									<div class="col-xl-3 col-lg-6 col-12 form-group">
 										<label>Last Name *</label>
-										<input type="text" placeholder="" class="form-control" />
-									</div>
-									<div class="col-xl-3 col-lg-6 col-12 form-group">
-										<label>Gender *</label>
-										<select class="select2">
-											<option value="">Please Select Gender *</option>
-											<option value="1">Male</option>
-											<option value="2">Female</option>
-											<option value="3">Others</option>
-										</select>
-									</div>
-									<div class="col-xl-3 col-lg-6 col-12 form-group">
-										<label>Date Of Birth *</label>
 										<input
+											name="last_name"
 											type="text"
-											placeholder="dd/mm/yyyy"
-											class="form-control air-datepicker"
+											placeholder=""
+											class="form-control"
+											required
 										/>
-										<i class="far fa-calendar-alt"></i>
-									</div>
-									<div class="col-xl-3 col-lg-6 col-12 form-group">
-										<label>ID No</label>
-										<input type="text" placeholder="" class="form-control" />
-									</div>
-									<div class="col-xl-3 col-lg-6 col-12 form-group">
-										<label>Blood Group *</label>
-										<select class="select2">
-											<option value="">Please Select Group *</option>
-											<option value="1">A+</option>
-											<option value="2">A-</option>
-											<option value="3">B+</option>
-											<option value="3">B-</option>
-											<option value="3">O+</option>
-											<option value="3">O-</option>
-										</select>
-									</div>
-									<div class="col-xl-3 col-lg-6 col-12 form-group">
-										<label>Religion *</label>
-										<select class="select2">
-											<option value="">Please Select Religion *</option>
-											<option value="1">Islam</option>
-											<option value="2">Hindu</option>
-											<option value="3">Christian</option>
-											<option value="3">Buddish</option>
-											<option value="3">Others</option>
-										</select>
 									</div>
 									<div class="col-xl-3 col-lg-6 col-12 form-group">
 										<label>E-Mail</label>
-										<input type="email" placeholder="" class="form-control" />
+										<input
+											name="email"
+											type="email"
+											placeholder=""
+											class="form-control"
+											required
+										/>
 									</div>
+
+									<div class="col-xl-3 col-lg-6 col-12 form-group">
+										<label>Gender *</label>
+										<select name="gender" class="form-control" required>
+											<option value="" disabled selected hidden>Please Select Gender *</option>
+											<option value="male">Male</option>
+											<option value="female">Female</option>
+											<option value="others">Others</option>
+										</select>
+									</div>
+
+									<div class="col-xl-3 col-lg-6 col-12 form-group">
+										<label>Date Of Birth *</label>
+										<input name="date_of_birth" type="date" class="form-control" required />
+									</div>
+
+									<div class="col-xl-3 col-lg-6 col-12 form-group">
+										<label>Blood Group *</label>
+										<select name="blood_group" class="form-control" required>
+											<option value="" disabled selected hidden>Please Select Group *</option>
+											<option value="a+">A+</option>
+											<option value="a-">A-</option>
+											<option value="b+">B+</option>
+											<option value="b-">B-</option>
+											<option value="o+">O+</option>
+											<option value="o-">O-</option>
+										</select>
+									</div>
+
+									<div class="col-xl-3 col-lg-6 col-12 form-group">
+										<label>Religion *</label>
+										<select name="religion" class="form-control">
+											<option value="" disabled selected hidden>
+												Please Select Religion *
+											</option>
+											<option value="islam">Islam</option>
+											<option value="hindu">Hindu</option>
+											<option value="christian">Christian</option>
+											<option value="buddish">Buddish</option>
+											<option value="others">Others</option>
+										</select>
+									</div>
+
 									<div class="col-xl-3 col-lg-6 col-12 form-group">
 										<label>Class *</label>
-										<select class="select2">
-											<option value="">Please Select Class *</option>
-											<option value="1">Play</option>
-											<option value="2">Nursery</option>
-											<option value="3">One</option>
-											<option value="3">Two</option>
-											<option value="3">Three</option>
-											<option value="3">Four</option>
-											<option value="3">Five</option>
+										<select name="class" class="form-control">
+											<option value="" disabled selected hidden>Please Select Class *</option>
+											<option value="kindergarten">Kindergarten</option>
+											<option value="nursery">Nursery</option>
+											<option value="one">One</option>
+											<option value="two">Two</option>
+											<option value="three">Three</option>
+											<option value="four">Four</option>
+											<option value="five">Five</option>
 										</select>
 									</div>
-									<div class="col-xl-3 col-lg-6 col-12 form-group">
-										<label>Section *</label>
-										<select class="select2">
-											<option value="">Please Select Section *</option>
-											<option value="1">Pink</option>
-											<option value="2">Blue</option>
-											<option value="3">Bird</option>
-											<option value="3">Rose</option>
-											<option value="3">Red</option>
-										</select>
-									</div>
-									<div class="col-xl-3 col-lg-6 col-12 form-group">
-										<label>Address</label>
-										<input type="text" placeholder="" class="form-control" />
-									</div>
+
 									<div class="col-xl-3 col-lg-6 col-12 form-group">
 										<label>Phone</label>
-										<input type="text" placeholder="" class="form-control" />
+										<input
+											name="phone"
+											type="number"
+											placeholder=""
+											class="form-control"
+											required
+										/>
 									</div>
-									<div class="col-lg-6 col-12 form-group">
-										<label>Short BIO</label>
-										<textarea
-											class="textarea form-control"
-											name="message"
-											id="form-message"
-											cols="10"
-											rows="9"
-										></textarea>
-									</div>
-									<div class="col-lg-6 col-12 form-group mg-t-30">
-										<label class="text-dark-medium">Upload Student Photo (150px X 150px)</label>
-										<input type="file" class="form-control-file" />
-									</div>
+
 									<div class="col-12 form-group mg-t-8">
 										<button
+											id="submit-button"
 											type="submit"
 											class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
 										>
-											Save
+											Submit
 										</button>
+
 										<button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">
 											Reset
 										</button>
@@ -737,8 +739,6 @@
 		<script src="js/select2.min.js"></script>
 		<!-- Date Picker Js -->
 		<script src="js/datepicker.min.js"></script>
-		<!-- Smoothscroll Js -->
-		<script src="js/jquery.smoothscroll.min.html"></script>
 		<!-- Scroll Up Js -->
 		<script src="js/jquery.scrollUp.min.js"></script>
 		<!-- Custom Js -->

@@ -1,6 +1,6 @@
 import { callApi, select } from "./lib.js";
 
-const signupForm = select("#signup-form");
+const loginForm = select("#login-form");
 
 const onSubmit = (event) => {
 	event.preventDefault();
@@ -13,15 +13,15 @@ const onSubmit = (event) => {
 
 	select("input[name='email']", loginForm).addEventListener("change", (event) => {
 		event.target.setCustomValidity("");
-		select("input[name='school_id'']", loginForm).setCustomValidity("");
+		select("input[name='password']", loginForm).setCustomValidity("");
 	});
 
-	select("input[name='school_id']", loginForm).addEventListener("change", (event) => {
+	select("input[name='password']", loginForm).addEventListener("change", (event) => {
 		event.target.setCustomValidity("");
 		select("input[name='email']", loginForm).setCustomValidity("");
 	});
 
-	callApi("backend/signup.php", {
+	callApi("backend/login.php", {
 		method: "POST",
 		body: formData,
 
@@ -50,18 +50,14 @@ const onSubmit = (event) => {
 				return;
 			}
 
-			if (errorData?.errors?.school_id) {
-				select("input[name='school_id']", loginForm).setCustomValidity(errorData.errors.school_id);
-				select("input[name='school_id']", loginForm).reportValidity();
+			if (errorData?.errors?.password) {
+				select("input[name='password']", loginForm).setCustomValidity(errorData.errors.password);
+				select("input[name='password']", loginForm).reportValidity();
 				return;
 			}
 
-			select("#general-error").textContent = errorData.message;
-
-			select("#general-error").scrollIntoView({
-				behavior: "smooth",
-				block: "end",
-			});
+			select("input[name='password']", loginForm).setCustomValidity(errorData.message);
+			select("input[name='password']", loginForm).reportValidity();
 		},
 
 		onError: () => {
@@ -72,4 +68,4 @@ const onSubmit = (event) => {
 	});
 };
 
-signupForm.addEventListener("submit", onSubmit);
+loginForm.addEventListener("submit", onSubmit);
