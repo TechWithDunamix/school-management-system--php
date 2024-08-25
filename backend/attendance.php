@@ -10,16 +10,44 @@ $orm = new DatabaseHelper($database);
 
 // Validate School
 $school = $orm->selectColumnsWhere('Users', ['school_name', 'ref_id'], 'ref_id = ?', [$school_id]);
-if (!$school){
+if (!$school) {
     header("HTTP/1.1 404 NOT FOUND");
-    echo "School not found";
+    echo json_encode([
+        "status" => "error",
+        "message" => "School not found"
+    ]);
     exit;
-};
+}
 
 $request_method = $_SERVER['REQUEST_METHOD'];
 
-if ($request_method == 'GET') {
-    // Get attendance for a specific student
+switch ($request_method) {
+    case 'GET':
+        handleGetRequests($orm, $school_id);
+        break;
+
+    case 'POST':
+        handlePostRequest($orm, $school_id);
+        break;
+
+    case 'PATCH':
+        handlePatchRequest($orm, $school_id);
+        break;
+
+    case 'DELETE':
+        handleDeleteRequest($orm, $school_id);
+        break;
+
+    default:
+        header("HTTP/1.1 405 METHOD NOT ALLOWED");
+        echo json_encode([
+            "status" => "error",
+            "message" => "Method not allowed"
+        ]);
+        exit;
+}
+
+function handleGetRequests($orm, $school_id) {
     if (isset($_GET['student_id'])) {
         $student_id = $_GET['student_id'];
         $whereClause = 'school_id = ? AND student_id = ?';
@@ -33,7 +61,7 @@ if ($request_method == 'GET') {
         if (!$attendance) {
             header("HTTP/1.1 404 Not Found");
             echo json_encode([
-                "error" => true,
+                "status" => "error",
                 "message" => "No attendance records found for the student"
             ]);
             exit;
@@ -42,7 +70,6 @@ if ($request_method == 'GET') {
         exit;
     }
 
-    // Get attendance for a specific class
     if (isset($_GET['class_id'])) {
         $class_id = $_GET['class_id'];
         $whereClause = 'school_id = ? AND class_id = ?';
@@ -56,7 +83,7 @@ if ($request_method == 'GET') {
         if (!$attendance) {
             header("HTTP/1.1 404 Not Found");
             echo json_encode([
-                "error" => true,
+                "status" => "error",
                 "message" => "No attendance records found for the class"
             ]);
             exit;
@@ -65,7 +92,6 @@ if ($request_method == 'GET') {
         exit;
     }
 
-    // Get attendance for a specific date
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
         $whereClause = 'school_id = ? AND date = ?';
@@ -74,7 +100,7 @@ if ($request_method == 'GET') {
         if (!$attendance) {
             header("HTTP/1.1 404 Not Found");
             echo json_encode([
-                "error" => true,
+                "status" => "error",
                 "message" => "No attendance records found for the date"
             ]);
             exit;
@@ -83,19 +109,16 @@ if ($request_method == 'GET') {
         exit;
     }
 
-    // Get all attendance records for the school
     $attendance = $orm->selectWhere('attendance', 'school_id = ?', [$school_id]);
     echo json_encode($attendance);
     exit;
 }
 
-if ($request_method === 'POST') {
-    // Add a new attendance record
+function handlePostRequest($orm, $school_id) {
     $rawPostData = file_get_contents("php://input");
     $postdata = json_decode($rawPostData, true);
     $errors = [];
 
-    // Validate required fields
     if (!isset($postdata['class_id'])) {
         $errors['class_id'] = 'Class ID is a required field';
     }
@@ -113,7 +136,11 @@ if ($request_method === 'POST') {
     }
     if ($errors) {
         header("HTTP/1.1 400 BAD REQUEST");
-        echo json_encode($errors);
+        echo json_encode([
+            "status" => "error",
+            "message" => "Validation Failed",
+            "errors" => $errors
+        ]);
         exit;
     }
 
@@ -127,12 +154,15 @@ if ($request_method === 'POST') {
     ];
 
     $orm->insert('attendance', $data);
-    echo json_encode($data);
+    echo json_encode([
+        "status" => "success",
+        "message" => "Attendance record created successfully",
+        "data" => $data
+    ]);
     exit;
 }
 
-if ($request_method == 'PATCH') {
-    // Update an attendance record
+function handlePatchRequest($orm, $school_id) {
     $rawPatchData = file_get_contents("php://input");
     $patchdata = json_decode($rawPatchData, true);
 
@@ -147,7 +177,7 @@ if ($request_method == 'PATCH') {
         if (!$attendance) {
             header("HTTP/1.1 404 Not Found");
             echo json_encode([
-                "error" => true,
+                "status" => "error",
                 "message" => "No attendance record found for the specified parameters"
             ]);
             exit;
@@ -161,16 +191,23 @@ if ($request_method == 'PATCH') {
         }
 
         $orm->update('attendance', $obj, $whereClause, $params);
-        echo json_encode($obj);
+        echo json_encode([
+            "status" => "success",
+            "message" => "Attendance record updated successfully",
+            "data" => $obj
+        ]);
         exit;
     } else {
-        echo "Set student_id, date, and session as GET parameters";
+        header("HTTP/1.1 400 BAD REQUEST");
+        echo json_encode([
+            "status" => "error",
+            "message" => "Set student_id, date, and session as GET parameters"
+        ]);
         exit;
     }
 }
 
-if ($request_method == 'DELETE') {
-    // Delete an attendance record
+function handleDeleteRequest($orm, $school_id) {
     if (isset($_GET['student_id']) && isset($_GET['date']) && isset($_GET['session'])) {
         $student_id = $_GET['student_id'];
         $date = $_GET['date'];
@@ -182,7 +219,7 @@ if ($request_method == 'DELETE') {
         if (!$attendance) {
             header("HTTP/1.1 404 Not Found");
             echo json_encode([
-                "error" => true,
+                "status" => "error",
                 "message" => "No attendance record found for the specified parameters"
             ]);
             exit;
@@ -190,12 +227,19 @@ if ($request_method == 'DELETE') {
 
         $obj = $attendance[0];
         $orm->delete('attendance', "student_id = ? AND date = ? AND session = ?", [$student_id, $date, $session]);
-        echo json_encode($obj);
+        echo json_encode([
+            "status" => "success",
+            "message" => "Attendance record deleted successfully",
+            "data" => $obj
+        ]);
         exit;
     } else {
-        echo "Set student_id, date, and session as GET parameters";
+        header("HTTP/1.1 400 BAD REQUEST");
+        echo json_encode([
+            "status" => "error",
+            "message" => "Set student_id, date, and session as GET parameters"
+        ]);
         exit;
     }
 }
-
 ?>
