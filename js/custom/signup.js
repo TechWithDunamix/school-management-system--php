@@ -11,14 +11,14 @@ const onSubmit = (event) => {
 
 	const formData = Object.fromEntries(new FormData(event.target));
 
-	select("input[name='email']", loginForm).addEventListener("change", (event) => {
+	select("input[name='email']", signupForm).addEventListener("change", (event) => {
 		event.target.setCustomValidity("");
-		select("input[name='school_id'']", loginForm).setCustomValidity("");
+		select("input[name='school_name'']", signupForm).setCustomValidity("");
 	});
 
-	select("input[name='school_id']", loginForm).addEventListener("change", (event) => {
+	select("input[name='school_name']", signupForm).addEventListener("change", (event) => {
 		event.target.setCustomValidity("");
-		select("input[name='email']", loginForm).setCustomValidity("");
+		select("input[name='email']", signupForm).setCustomValidity("");
 	});
 
 	callApi("backend/signup.php", {
@@ -45,14 +45,14 @@ const onSubmit = (event) => {
 
 		onResponseError: ({ errorData }) => {
 			if (errorData?.errors?.email) {
-				select("input[name='email']", loginForm).setCustomValidity(errorData.errors.email);
-				select("input[name='email']", loginForm).reportValidity();
+				select("input[name='email']", signupForm).setCustomValidity(errorData.errors.email);
+				select("input[name='email']", signupForm).reportValidity();
 				return;
 			}
 
 			if (errorData?.errors?.school_id) {
-				select("input[name='school_id']", loginForm).setCustomValidity(errorData.errors.school_id);
-				select("input[name='school_id']", loginForm).reportValidity();
+				select("input[name='school_name']", signupForm).setCustomValidity(errorData.errors.school_id);
+				select("input[name='school_name']", signupForm).reportValidity();
 				return;
 			}
 

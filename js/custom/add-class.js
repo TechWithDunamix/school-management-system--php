@@ -1,0 +1,34 @@
+import { callApi, select } from "./lib.js";
+
+const onSubmit = (event) => {
+	event.preventDefault();
+
+	const formData = Object.fromEntries(new FormData(event.target));
+
+	callApi("backend/class.php", {
+		method: "POST",
+		body: formData,
+		query: { school_id: localStorage.getItem("school_id") },
+
+		onResponse: () => {
+			window.location.href = "all-class.html";
+		},
+
+		onError: ({ errorData, error }) => {
+			if (errorData) {
+				select("#general-error").textContent =
+					errorData.message ??
+					"An error occurred while submitting the form. Please try again later.";
+				return;
+			}
+
+			if (error) {
+				select("#general-error").textContent =
+					"An error occurred while submitting the form. Please try again later.";
+				return;
+			}
+		},
+	});
+};
+
+select("#submit-form").addEventListener("submit", onSubmit);

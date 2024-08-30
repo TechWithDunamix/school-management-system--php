@@ -44,6 +44,35 @@ const onSubmit = (event) => {
 	});
 };
 
+const fetchAndDisplayClassOptions = () => {
+	callApi("backend/class.php", {
+		query: { class_id: null },
+
+		onError: ({ errorData, error }) => {
+			if (errorData) {
+				console.error("Failed to fetch classes:", errorData.message);
+				return;
+			}
+
+			console.error("Failed to fetch classes:", error);
+		},
+
+		onResponse: ({ data }) => {
+			const selectElement = select("select[name='class']");
+
+			console.log(data);
+
+			// const optionsHtml = data.data
+			// 	.map((classItem) => `<option value="${classItem}">${classItem}</option>`)
+			// 	.join("");
+
+			// selectElement.insertAdjacentHTML("beforeend", optionsHtml);
+		},
+	});
+};
+
+fetchAndDisplayClassOptions();
+
 const populateLateForm = () => {
 	callApi("backend/students.php", {
 		query: {
