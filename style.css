@@ -77,6 +77,7 @@ body {
 	text-rendering: optimizeLegibility;
 	color: #646464;
 	background-color: #f0f1f3;
+	min-height: 100%;
 }
 
 p {
@@ -4393,18 +4394,16 @@ ul {
 	background-image: url("img/figure/login-bg.jpg");
 	background-repeat: no-repeat;
 	background-position: top;
-	height: 100%;
 	position: relative;
 	inset: 0;
 }
 
 .login-page-content {
-	height: 100%;
-	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	height: 100svh;
 	padding: 50px;
 }
 

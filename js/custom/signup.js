@@ -37,8 +37,6 @@ const onSubmit = (event) => {
 
 		onResponse: ({ data }) => {
 			data.data?.school_id && localStorage.setItem("school_id", data.data.school_id);
-			data.data?.email && localStorage.setItem("email", data.data.email);
-			data.data?.school_name && localStorage.setItem("school_name", data.data.school_name);
 
 			window.location.href = "index.html";
 		},

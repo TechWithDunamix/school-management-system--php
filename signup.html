@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="">
 	<head>
+		<script type="module" src="js/custom/checkCookies.js"></script>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<title>AKKHOR | Signup</title>
@@ -22,54 +23,10 @@
 		<link rel="stylesheet" href="css/animate.min.css" />
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="style.css" />
-		<!-- Modernize js -->
-		<script src="js/modernizr-3.6.0.min.js"></script>
+
+		<script src="js/main.js" defer></script>
 		<!-- Custom JS -->
 		<script type="module" src="js/custom/signup.js"></script>
-
-		<style>
-			#loader {
-				display: none;
-				position: fixed;
-				left: 50%;
-				top: 50%;
-				transform: translate(-50%, -50%);
-				z-index: 9999;
-			}
-
-			#loader img {
-				width: 50px;
-				height: 50px;
-			}
-
-			.button-loader {
-				display: inline-block;
-				width: 20px;
-				height: 20px;
-				border: 3px solid rgba(255, 255, 255, 0.3);
-				border-radius: 50%;
-				border-top-color: #fff;
-				animation: spin 1s ease-in-out infinite;
-				margin-left: 10px;
-			}
-
-			.submit-btn-wrapper {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-
-			@keyframes spin {
-				to {
-					transform: rotate(360deg);
-				}
-			}
-
-			.disabled {
-				pointer-events: none;
-				opacity: 0.5;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -144,7 +101,5 @@
 		<script src="js/bootstrap.min.js"></script>
 		<!-- Scroll Up Js -->
 		<script src="js/jquery.scrollUp.min.js"></script>
-		<!-- Custom Js -->
-		<script src="js/main.js"></script>
 	</body>
 </html>

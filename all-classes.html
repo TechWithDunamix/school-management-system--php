@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		<title>AKKHOR | Add Class</title>
+		<title>AKKHOR | All Classes</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!-- Favicon -->
@@ -20,17 +20,16 @@
 		<link rel="stylesheet" href="fonts/flaticon.css" />
 		<!-- Animate CSS -->
 		<link rel="stylesheet" href="css/animate.min.css" />
-		<!-- Select 2 CSS -->
-		<link rel="stylesheet" href="css/select2.min.css" />
-		<!-- Date Picker CSS -->
-		<link rel="stylesheet" href="css/datepicker.min.css" />
+		<!-- Data Table CSS -->
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="style.css" />
 
 		<script type="module" src="js/custom/includeHtml.js"></script>
 		<script src="js/main.js" defer></script>
 
-		<script type="module" src="js/custom/add-class.js"></script>
+		<script type="module" src="js/custom/checkCookies.js"></script>
+		<script type="module" src="js/custom/all-classes.js"></script>
 	</head>
 
 	<body>
@@ -43,6 +42,7 @@
 				<!-- Filled by js -->
 			</div>
 			<!-- Header Menu Area End Here -->
+
 			<!-- Page Area Start Here -->
 			<div class="dashboard-page-one">
 				<!-- Sidebar Area Start Here -->
@@ -50,6 +50,7 @@
 					<!-- Filled by js -->
 				</div>
 				<!-- Sidebar Area End Here -->
+
 				<div class="dashboard-content-one">
 					<!-- Breadcubs Area Start Here -->
 					<div class="breadcrumbs-area">
@@ -58,61 +59,54 @@
 							<li>
 								<a href="index.html">Home</a>
 							</li>
-							<li>Add New Class</li>
+							<li>All Classes</li>
 						</ul>
 					</div>
 					<!-- Breadcubs Area End Here -->
-					<!-- Add Class Area Start Here -->
+					<!-- Class Table Area Start Here -->
 					<div class="card height-auto">
 						<div class="card-body">
 							<div class="heading-layout1">
 								<div class="item-title">
-									<h3>Add New Class Schedule</h3>
-								</div>
-								<div class="dropdown">
-									<a
-										class="dropdown-toggle"
-										href="#"
-										role="button"
-										data-toggle="dropdown"
-										aria-expanded="false"
-										>...</a
-									>
+									<h3>All Class Schedules</h3>
 								</div>
 							</div>
-
-							<form id="submit-form" class="new-added-form row">
-								<div class="col-xl-3 col-lg-6 col-12 form-group">
-									<label>Class Title</label>
-									<input
-										type="text"
-										name="class_name"
-										placeholder="Enter class title"
-										class="form-control"
-									/>
-								</div>
-								<div class="col-xl-3 col-lg-6 col-12 form-group">
-									<label>Teacher Name</label>
-									<input
-										type="text"
-										name="teacher"
-										placeholder="Enter teacher name"
-										class="form-control"
-									/>
-								</div>
-
-								<div class="col-12 form-group mg-t-8">
-									<button
-										type="submit"
-										class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
-									>
-										Submit
-									</button>
+							<form class="mg-b-20">
+								<div class="row gutters-8">
+									<div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+										<input type="text" placeholder="Search by ID ..." class="form-control" />
+									</div>
+									<div class="col-4-xxxl col-xl-4 col-lg-3 col-12 form-group">
+										<input type="text" placeholder="Search by Name ..." class="form-control" />
+									</div>
+									<div class="col-4-xxxl col-xl-3 col-lg-3 col-12 form-group">
+										<input type="text" placeholder="Search by Class ..." class="form-control" />
+									</div>
+									<div class="col-1-xxxl col-xl-2 col-lg-3 col-12 form-group">
+										<button type="submit" class="fw-btn-fill btn-gradient-yellow">
+											SEARCH
+										</button>
+									</div>
 								</div>
 							</form>
+							<div class="table-responsive">
+								<table class="table display data-table text-nowrap">
+									<thead>
+										<tr>
+											<th>Photo</th>
+											<th>Class Name</th>
+											<th>Teacher Name</th>
+											<th>Edit</th>
+										</tr>
+									</thead>
+									<tbody id="table-body">
+										<!-- FIlled with js -->
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-					<!-- Add Class Area End Here -->
+					<!-- Class Table Area End Here -->
 					<footer class="footer-wrap-layout1">
 						<div class="copyright">
 							© Copyrights <a href="#">akkhor</a> 2019. All rights reserved. Designed by
@@ -123,6 +117,7 @@
 			</div>
 			<!-- Page Area End Here -->
 		</div>
+
 		<!-- jquery-->
 		<script src="js/jquery-3.3.1.min.js"></script>
 		<!-- Plugins js -->
@@ -131,13 +126,11 @@
 		<script src="js/popper.min.js"></script>
 		<!-- Bootstrap js -->
 		<script src="js/bootstrap.min.js"></script>
-		<!-- Select 2 Js -->
-		<script src="js/select2.min.js"></script>
-		<!-- Date Picker Js -->
-		<script src="js/datepicker.min.js"></script>
 		<!-- Scroll Up Js -->
 		<script src="js/jquery.scrollUp.min.js"></script>
+		<!-- Data Table Js -->
+		<script src="js/jquery.dataTables.min.js"></script>
 	</body>
 
-	<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/add-class.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 May 2024 12:35:00 GMT -->
+	<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/all-classes.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 May 2024 12:35:00 GMT -->
 </html>

@@ -46,7 +46,7 @@ const onSubmit = (event) => {
 
 const fetchAndDisplayClassOptions = () => {
 	callApi("backend/class.php", {
-		query: { class_id: null },
+		query: { school_id: localStorage.getItem("school_id") },
 
 		onError: ({ errorData, error }) => {
 			if (errorData) {
@@ -60,13 +60,11 @@ const fetchAndDisplayClassOptions = () => {
 		onResponse: ({ data }) => {
 			const selectElement = select("select[name='class']");
 
-			console.log(data);
+			const optionsHtml = data.data
+				.map((classItem) => `<option value="${classItem.id}">${classItem.class_name}</option>`)
+				.join("");
 
-			// const optionsHtml = data.data
-			// 	.map((classItem) => `<option value="${classItem}">${classItem}</option>`)
-			// 	.join("");
-
-			// selectElement.insertAdjacentHTML("beforeend", optionsHtml);
+			selectElement.insertAdjacentHTML("beforeend", optionsHtml);
 		},
 	});
 };

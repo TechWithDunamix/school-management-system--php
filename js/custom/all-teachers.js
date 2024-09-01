@@ -38,6 +38,7 @@ const deleteTeacher = (teacherId) => {
 	callApi("backend/teachers.php", {
 		method: "DELETE",
 		query: { school_id: localStorage.getItem("school_id"), teacher_id: teacherId },
+		headers: localStorage.getItem("token"),
 
 		onResponse: () => {
 			select(`tr[data-teacher-id="${teacherId}"]`).remove();

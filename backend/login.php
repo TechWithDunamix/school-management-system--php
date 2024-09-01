@@ -58,7 +58,7 @@ if ($request_method === 'POST') {
 		$_SESSION['school_id'] = $user[0]['ref_id'];
 		$payload = [
 			"email" => $user[0]['email'],
-			"password" => $user[0]['hashedPassword']
+			"password" => $user[0]['hashedpassword'],
 		];
 		$jwt = new JWT(SECRET_KEY);
 		$token = $jwt->generateToken($payload);
@@ -69,7 +69,7 @@ if ($request_method === 'POST') {
 				"email" => $email,
 				"school_name" => $user[0]['school_name'],
 				"school_id" => $user[0]['ref_id'],
-				"token" => $token
+				"token" => $token,
 			],
 		]);
 		exit;

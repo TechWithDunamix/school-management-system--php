@@ -1,43 +1,6 @@
-<!DOCTYPE html>
-<html class="no-js" lang="">
-	<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/notice-board.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 May 2024 12:35:00 GMT -->
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="x-ua-compatible" content="ie=edge" />
-		<title>AKKHOR | Notice Board</title>
-		<meta name="description" content="" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png" />
-		<!-- Normalize CSS -->
-		<link rel="stylesheet" href="css/normalize.css" />
-		<!-- Main CSS -->
-		<link rel="stylesheet" href="css/main.css" />
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="css/all.min.css" />
-		<!-- Flaticon CSS -->
-		<link rel="stylesheet" href="fonts/flaticon.css" />
-		<!-- Animate CSS -->
-		<link rel="stylesheet" href="css/animate.min.css" />
-		<!-- Date Picker CSS -->
-		<link rel="stylesheet" href="css/datepicker.min.css" />
-		<!-- Select 2 CSS -->
-		<link rel="stylesheet" href="css/select2.min.css" />
-		<!-- Custom CSS -->
-		<link rel="stylesheet" href="style.css" />
-		<!-- Modernize js -->
-		<script src="js/modernizr-3.6.0.min.js"></script>
-	</head>
+import { select } from "./lib.js";
 
-	<body>
-		<!-- Preloader Start Here -->
-		<div id="preloader"></div>
-		<!-- Preloader End Here -->
-		<div id="wrapper" class="wrapper bg-ash">
-			<!-- Header Menu Area Start Here -->
-			<div class="navbar navbar-expand-md header-menu-one bg-light">
+const headerHtml = `
 				<div class="nav-bar-header-one">
 					<div class="header-logo">
 						<a href="index.html">
@@ -59,7 +22,7 @@
 						class="navbar-toggler pulse-animation"
 						type="button"
 						data-toggle="collapse"
-						data-target="#mobile-navbar"
+						data-target="javascript:void(0)mobile-navbar"
 						aria-expanded="false"
 					>
 						<i class="far fa-arrow-alt-circle-down"></i>
@@ -68,7 +31,7 @@
 						<i class="fas fa-bars"></i>
 					</button>
 				</div>
-				<div class="header-main-menu collapse navbar-collapse" id="mobile-navbar">
+				<div class="header-main-menu bs-collapse navbar-collapse" id="mobile-navbar">
 					<ul class="navbar-nav">
 						<li class="navbar-item header-search-bar">
 							<div class="input-group stylish-input-group">
@@ -85,7 +48,7 @@
 						<li class="navbar-item dropdown header-admin">
 							<a
 								class="navbar-nav-link dropdown-toggle"
-								href="#"
+								href="javascript:void(0)"
 								role="button"
 								data-toggle="dropdown"
 								aria-expanded="false"
@@ -105,13 +68,13 @@
 								<div class="item-content">
 									<ul class="settings-list">
 										<li>
-											<a href="#"><i class="flaticon-user"></i>My Profile</a>
+											<a href="javascript:void(0)"><i class="flaticon-user"></i>My Profile</a>
 										</li>
 										<li>
-											<a href="#"><i class="flaticon-list"></i>Task</a>
+											<a href="javascript:void(0)"><i class="flaticon-list"></i>Task</a>
 										</li>
 										<li>
-											<a href="#"
+											<a href="javascript:void(0)"
 												><i
 													class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"
 												></i
@@ -119,7 +82,7 @@
 											>
 										</li>
 										<li>
-											<a href="#"><i class="flaticon-gear-loading"></i>Account Settings</a>
+											<a href="javascript:void(0)"><i class="flaticon-gear-loading"></i>Account Settings</a>
 										</li>
 										<li>
 											<a href="login.html"><i class="flaticon-turn-off"></i>Log Out</a>
@@ -131,7 +94,7 @@
 						<li class="navbar-item dropdown header-message">
 							<a
 								class="navbar-nav-link dropdown-toggle"
-								href="#"
+								href="javascript:void(0)"
 								role="button"
 								data-toggle="dropdown"
 								aria-expanded="false"
@@ -152,7 +115,7 @@
 										</div>
 										<div class="media-body space-sm">
 											<div class="item-title">
-												<a href="#">
+												<a href="javascript:void(0)">
 													<span class="item-name">Maria Zaman</span>
 													<span class="item-time">18:30</span>
 												</a>
@@ -166,7 +129,7 @@
 										</div>
 										<div class="media-body space-sm">
 											<div class="item-title">
-												<a href="#">
+												<a href="javascript:void(0)">
 													<span class="item-name">Benny Roy</span>
 													<span class="item-time">10:35</span>
 												</a>
@@ -180,7 +143,7 @@
 										</div>
 										<div class="media-body space-sm">
 											<div class="item-title">
-												<a href="#">
+												<a href="javascript:void(0)">
 													<span class="item-name">Steven</span>
 													<span class="item-time">02:35</span>
 												</a>
@@ -194,7 +157,7 @@
 										</div>
 										<div class="media-body space-sm">
 											<div class="item-title">
-												<a href="#">
+												<a href="javascript:void(0)">
 													<span class="item-name">Joshep Joe</span>
 													<span class="item-time">12:35</span>
 												</a>
@@ -208,7 +171,7 @@
 						<li class="navbar-item dropdown header-notification">
 							<a
 								class="navbar-nav-link dropdown-toggle"
-								href="#"
+								href="javascript:void(0)"
 								role="button"
 								data-toggle="dropdown"
 								aria-expanded="false"
@@ -256,36 +219,32 @@
 						<li class="navbar-item dropdown header-language">
 							<a
 								class="navbar-nav-link dropdown-toggle"
-								href="#"
+								href="javascript:void(0)"
 								role="button"
 								data-toggle="dropdown"
 								aria-expanded="false"
 								><i class="fas fa-globe-americas"></i>EN</a
 							>
 							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="#">English</a>
-								<a class="dropdown-item" href="#">Spanish</a>
-								<a class="dropdown-item" href="#">Franchis</a>
-								<a class="dropdown-item" href="#">Chiness</a>
+								<a class="dropdown-item" href="javascript:void(0)">English</a>
+								<a class="dropdown-item" href="javascript:void(0)">Spanish</a>
+								<a class="dropdown-item" href="javascript:void(0)">Franchis</a>
+								<a class="dropdown-item" href="javascript:void(0)">Chiness</a>
 							</div>
 						</li>
 					</ul>
 				</div>
-			</div>
-			<!-- Header Menu Area End Here -->
-			<!-- Page Area Start Here -->
-			<div class="dashboard-page-one">
-				<!-- Sidebar Area Start Here -->
-				<div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
-					<div class="mobile-sidebar-header d-md-none">
+`;
+
+const sidebarHtml = `<div class="mobile-sidebar-header d-md-none">
 						<div class="header-logo">
 							<a href="index.html"><img src="img/logo1.png" alt="logo" /></a>
 						</div>
 					</div>
 					<div class="sidebar-menu-content">
-						<ul class="nav nav-sidebar-menu sidebar-toggle-view">
+						<ul id="nav-list" class="nav nav-sidebar-menu sidebar-toggle-view">
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-dashboard"></i><span>Dashboard</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -312,7 +271,7 @@
 								</ul>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-classmates"></i><span>Students</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -339,7 +298,7 @@
 								</ul>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-multiple-users-silhouette"></i><span>Teachers</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -366,7 +325,7 @@
 								</ul>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-couple"></i><span>Parents</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -388,7 +347,7 @@
 								</ul>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-books"></i><span>Library</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -405,7 +364,7 @@
 								</ul>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-technological"></i><span>Acconunt</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -427,7 +386,7 @@
 								</ul>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i
 									><span>Class</span></a
 								>
@@ -460,7 +419,7 @@
 								>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-shopping-list"></i><span>Exam</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -487,7 +446,7 @@
 								>
 							</li>
 							<li class="nav-item">
-								<a href="notice-board.html" class="nav-link menu-active"
+								<a href="notice-board.html" class="nav-link"
 									><i class="flaticon-script"></i><span>Notice</span></a
 								>
 							</li>
@@ -497,7 +456,7 @@
 								>
 							</li>
 							<li class="nav-item sidebar-nav-item">
-								<a href="#" class="nav-link"
+								<a href="javascript:void(0)" class="nav-link"
 									><i class="flaticon-menu-1"></i><span>UI Elements</span></a
 								>
 								<ul class="nav sub-group-menu">
@@ -549,284 +508,18 @@
 								>
 							</li>
 						</ul>
-					</div>
-				</div>
-				<!-- Sidebar Area End Here -->
-				<div class="dashboard-content-one">
-					<!-- Breadcubs Area Start Here -->
-					<div class="breadcrumbs-area">
-						<h3>Notice Board</h3>
-						<ul>
-							<li>
-								<a href="index.html">Home</a>
-							</li>
-							<li>Notice</li>
-						</ul>
-					</div>
-					<!-- Breadcubs Area End Here -->
-					<div class="row">
-						<!-- Add Notice Area Start Here -->
-						<div class="col-4-xxxl col-12">
-							<div class="card height-auto">
-								<div class="card-body">
-									<div class="heading-layout1">
-										<div class="item-title">
-											<h3>Create A Notice</h3>
-										</div>
-										<div class="dropdown">
-											<a
-												class="dropdown-toggle"
-												href="#"
-												role="button"
-												data-toggle="dropdown"
-												aria-expanded="false"
-												>...</a
-											>
+</div>`;
 
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#"
-													><i class="fas fa-times text-orange-red"></i>Close</a
-												>
-												<a class="dropdown-item" href="#"
-													><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a
-												>
-												<a class="dropdown-item" href="#"
-													><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a
-												>
-											</div>
-										</div>
-									</div>
-									<form class="new-added-form">
-										<div class="row">
-											<div class="col-12-xxxl col-lg-6 col-12 form-group">
-												<label>Title</label>
-												<input type="text" placeholder="" class="form-control" />
-											</div>
-											<div class="col-12-xxxl col-lg-6 col-12 form-group">
-												<label>Details</label>
-												<input type="text" placeholder="" class="form-control" />
-											</div>
-											<div class="col-12-xxxl col-lg-6 col-12 form-group">
-												<label>Posted By </label>
-												<input type="text" placeholder="" class="form-control" />
-												<i class="fas fa-user"></i>
-											</div>
-											<div class="col-12-xxxl col-lg-6 col-12 form-group">
-												<label>Date</label>
-												<input
-													type="text"
-													placeholder=""
-													class="form-control air-datepicker"
-												/>
-												<i class="far fa-calendar-alt"></i>
-											</div>
-											<div class="col-12 form-group mg-t-8">
-												<button
-													type="submit"
-													class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
-												>
-													Save
-												</button>
-												<button
-													type="reset"
-													class="btn-fill-lg bg-blue-dark btn-hover-yellow"
-												>
-													Reset
-												</button>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<!-- Add Notice Area End Here -->
-						<!-- All Notice Area Start Here -->
-						<div class="col-8-xxxl col-12">
-							<div class="card height-auto">
-								<div class="card-body">
-									<div class="heading-layout1">
-										<div class="item-title">
-											<h3>Notice Board</h3>
-										</div>
-										<div class="dropdown">
-											<a
-												class="dropdown-toggle"
-												href="#"
-												role="button"
-												data-toggle="dropdown"
-												aria-expanded="false"
-												>...</a
-											>
+const sideBarContainer = select("#sidebar");
 
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#"
-													><i class="fas fa-times text-orange-red"></i>Close</a
-												>
-												<a class="dropdown-item" href="#"
-													><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a
-												>
-												<a class="dropdown-item" href="#"
-													><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a
-												>
-											</div>
-										</div>
-									</div>
-									<form class="mg-b-20">
-										<div class="row gutters-8">
-											<div class="col-lg-5 col-12 form-group">
-												<input
-													type="text"
-													placeholder="Search by Date ..."
-													class="form-control"
-												/>
-											</div>
-											<div class="col-lg-5 col-12 form-group">
-												<input
-													type="text"
-													placeholder="Search by Title ..."
-													class="form-control"
-												/>
-											</div>
-											<div class="col-lg-2 col-12 form-group">
-												<button type="submit" class="fw-btn-fill btn-gradient-yellow">
-													SEARCH
-												</button>
-											</div>
-										</div>
-									</form>
-									<div class="notice-board-wrap">
-										<div class="notice-list">
-											<div class="post-date bg-skyblue">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-yellow">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-pink">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-skyblue">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-yellow">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-pink">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-skyblue">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-yellow">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-										<div class="notice-list">
-											<div class="post-date bg-pink">16 June, 2019</div>
-											<h6 class="notice-title">
-												<a href="#"
-													>Great School Great School manag mene esom text of the printing
-													Great School manag mene esom text of the printing manag mene esom
-													text of the printing.</a
-												>
-											</h6>
-											<div class="entry-meta">Jennyfar Lopez / <span>5 min ago</span></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- All Notice Area End Here -->
-					</div>
-					<footer class="footer-wrap-layout1">
-						<div class="copyright">
-							© Copyrights <a href="#">akkhor</a> 2019. All rights reserved. Designed by
-							<a href="#">PsdBosS</a>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<!-- Page Area End Here -->
-		</div>
-		<!-- jquery-->
-		<script src="js/jquery-3.3.1.min.js"></script>
-		<!-- Plugins js -->
-		<script src="js/plugins.js"></script>
-		<!-- Popper js -->
-		<script src="js/popper.min.js"></script>
-		<!-- Bootstrap js -->
-		<script src="js/bootstrap.min.js"></script>
-		<!-- Select 2 Js -->
-		<script src="js/select2.min.js"></script>
-		<!-- Scroll Up Js -->
-		<script src="js/jquery.scrollUp.min.js"></script>
-		<!-- Date Picker Js -->
-		<script src="js/datepicker.min.js"></script>
-		<!-- Custom Js -->
-		<script src="js/main.js"></script>
-	</body>
+sideBarContainer.insertAdjacentHTML("beforeend", sidebarHtml);
 
-	<!-- Mirrored from www.radiustheme.com/demo/html/psdboss/akkhor/akkhor/notice-board.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 31 May 2024 12:35:00 GMT -->
-</html>
+select("#navbar").insertAdjacentHTML("beforeend", headerHtml);
+
+const activePage = window.location.pathname.split("/").at(-1);
+
+const activeLink = select("#nav-list", sideBarContainer).querySelector(
+	`[class='nav-item'] > a[href='${activePage}']`
+);
+activeLink.classList.add("menu-active");
+activeLink.parentElement.parentElement.classList.add("sub-group-active");

@@ -11,7 +11,7 @@ const onSubmit = (event) => {
 		query: { school_id: localStorage.getItem("school_id") },
 
 		onResponse: () => {
-			window.location.href = "all-class.html";
+			window.location.href = "all-classes.html";
 		},
 
 		onError: ({ errorData, error }) => {
