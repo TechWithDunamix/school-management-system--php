@@ -2,6 +2,8 @@
 header('Content-Type: application/json');
 require_once "inc/db.php";
 require_once "inc/DatabaseHelper.php";
+require_once "inc/JWT.php";
+require_once "inc/config.php";
 
 $request_method = $_SERVER['REQUEST_METHOD'];
 if ($request_method === 'POST') {
@@ -54,7 +56,12 @@ if ($request_method === 'POST') {
 		$_SESSION['email'] = $email;
 		$_SESSION['school_name'] = $user[0]['school_name'];
 		$_SESSION['school_id'] = $user[0]['ref_id'];
-
+		$payload = [
+			"email" => $user[0]['email'],
+			"password" => $user[0]['hashedPassword']
+		];
+		$jwt = new JWT(SECRET_KEY);
+		$token = $jwt->generateToken($payload);
 		echo json_encode([
 			"status" => "success",
 			"message" => "Login successful",
@@ -62,6 +69,7 @@ if ($request_method === 'POST') {
 				"email" => $email,
 				"school_name" => $user[0]['school_name'],
 				"school_id" => $user[0]['ref_id'],
+				"token" => $token
 			],
 		]);
 		exit;
