@@ -1,6 +1,8 @@
 <?php
 require_once 'JWT.php';
 require_once "config.php";
+require_once "db.php";
+require_once "DatabaseHelper.php";
 
 $jwt = new JWT(SECRET_KEY);
 
@@ -15,8 +17,10 @@ if (strpos($authHeader, 'Bearer ') === 0) {
 	$validatedPayload = $jwt->validateToken($token);
 
 	if ($validatedPayload) {
-		$userId = $validatedPayload['userId'];
-		$username = $validatedPayload['username'];
+		$userEmail = $validatedPayload['email'];
+		$userPassword = $validatedPayload['password'];
+		
+		
 	} else {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode([
