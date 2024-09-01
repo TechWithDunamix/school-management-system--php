@@ -2,7 +2,8 @@
 header('Content-Type: application/json');
 require_once "inc/db.php";
 require_once "inc/DatabaseHelper.php";
-
+require_once "inc/JWT.php";
+require_once "inc/config.php";
 $request_method = $_SERVER['REQUEST_METHOD'];
 if ($request_method === 'POST') {
 	$rawPostData = file_get_contents("php://input");
@@ -99,6 +100,13 @@ if ($request_method === 'POST') {
 		$_SESSION['email'] = $postdata['email'];
 		$_SESSION['school_name'] = $postdata['school_name'];
 		$_SESSION['school_id'] = $ref_id;
+		$payload = [
+			"email" => $postdata['email'],
+			"password" => $hashedPassword
+		];
+		$jwt = new JWT(SECRET_KEY);
+		$token = $jwt->generateToken($payload);
+		
 
 		echo json_encode([
 			"status" => "success",
@@ -106,7 +114,8 @@ if ($request_method === 'POST') {
 			"data" => [
 				"email" => $postdata['email'],
 				"school_id" => $ref_id,
-				"school_name", $postdata['school_name'],
+				"school_name" => $postdata['school_name'],
+				"token" => $token
 			],
 		]);
 		exit;
