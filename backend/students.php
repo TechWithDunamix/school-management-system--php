@@ -3,6 +3,7 @@
 header('Content-Type: application/json');
 require_once "inc/db.php";
 require_once "inc/DatabaseHelper.php";
+include "inc/auth.php";
 $school_id = $_GET['school_id'];
 $database = new Database();
 $orm = new DatabaseHelper($database);

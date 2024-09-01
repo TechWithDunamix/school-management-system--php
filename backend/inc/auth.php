@@ -19,6 +19,12 @@ if (strpos($authHeader, 'Bearer ') === 0) {
 	if ($validatedPayload) {
 		$userEmail = $validatedPayload['email'];
 		$userPassword = $validatedPayload['password'];
+		$db = new Database();
+		$orm = new DatabaseHelper($db);
+
+		$user = $orm->selectWhere('Users', 'email = ?', [$userEmail]);
+		define("USER",$user);
+
 		
 		
 	} else {
