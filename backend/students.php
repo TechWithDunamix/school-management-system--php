@@ -92,7 +92,7 @@ if ($request_method === 'POST') {
 	}
 	;
 	if (!isset($postdata['date_of_birth'])) {
-		$errors['date_of_birth'] = 'Student  class is a required field';
+		$errors['date_of_birth'] = 'Student  Date of birth is a required field';
 	}
 	;
 	if (!isset($postdata['gender'])) {
@@ -126,6 +126,7 @@ if ($request_method === 'POST') {
 		'class' => $postdata['class'],
 		'date_of_birth' => $formattedDate,
 		"school_id" => $school_id,
+		"logincode" => bin2hex(random_bytes(6)),
 
 	];
 	$database = new Database();
