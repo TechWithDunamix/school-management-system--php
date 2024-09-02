@@ -23,7 +23,10 @@ if (strpos($authHeader, 'Bearer ') === 0) {
 		$orm = new DatabaseHelper($db);
 
 		$user = $orm->selectWhere('Users', 'email = ?', [$userEmail]);
-		define("USER",$user);
+		$obj = $user[0];
+
+		define("USER",$user[0]);
+		define("school_id",$obj->ref_id);
 
 		
 		
