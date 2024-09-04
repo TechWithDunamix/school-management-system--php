@@ -114,7 +114,15 @@ if ($request_method === 'POST') {
 
 	// Format the date as a string (e.g., 'd/m/Y' for '31/12/2006')
 	$formattedDate = $date->format('Y/m/d');
+	$classId = $postdata['class'];
+	$database = new Database();
+	$orm = new DatabaseHelper($database);
+	$whereClause = "id = ?";
+	$params = [$classId];
+	$qs = $orm->selectWhere("Classes",$whereClause,$params);
+	$class = $qs[0] ;
 
+	
 	$data = [
 		"id" => bin2hex(random_bytes(16)),
 		'first_name' => $postdata['first_name'],
@@ -123,7 +131,7 @@ if ($request_method === 'POST') {
 		'age' => intval($postdata['age']),
 		'parent_phone' => $postdata['parent_phone'],
 		'parent_full_name' => $postdata['parent_full_name'],
-		'class' => $postdata['class'],
+		'class' => $class['class_name'],
 		'date_of_birth' => $formattedDate,
 		"school_id" => $school_id,
 		"logincode" => bin2hex(random_bytes(6)),
