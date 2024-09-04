@@ -30,7 +30,7 @@ if (strpos($authHeader, 'Bearer ') === 0) {
 			// Check if ref_id exists in the object
 			if (is_object($obj) && property_exists($obj, 'ref_id')) {
 				define("USER", $obj);
-				define("school_id", $obj->ref_id);
+				// define("school_id", $obj->ref_id);
 
 				// Proceed with your logic here, as ref_id is defined
 				// ...
@@ -43,7 +43,7 @@ if (strpos($authHeader, 'Bearer ') === 0) {
 				// ]);
 				// exit();
 				define("USER", $obj);
-				define("school_id", $obj->ref_id);
+				// define("school_id", $obj->ref_id);
 			}
 		} else {
 			// Handle the case where user is not found
