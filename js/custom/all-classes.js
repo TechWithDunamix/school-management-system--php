@@ -28,10 +28,8 @@ const deleteClass = (classId) => {
 
 	callApi("backend/class.php", {
 		method: "DELETE",
-		query: {
-			school_id: localStorage.getItem("school_id"),
-			class_id: classId,
-		},
+		auth: localStorage.getItem("token"),
+		query: { class_id: classId },
 		headers: localStorage.getItem("token"),
 
 		onResponse: () => {
@@ -42,7 +40,6 @@ const deleteClass = (classId) => {
 
 const fetchAndDisplayClassDetails = () => {
 	callApi("backend/class.php", {
-		query: { school_id: localStorage.getItem("school_id") },
 		auth: localStorage.getItem("token"),
 
 		onResponse: ({ data }) => {

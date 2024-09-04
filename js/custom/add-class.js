@@ -8,7 +8,7 @@ const onSubmit = (event) => {
 	callApi("backend/class.php", {
 		method: "POST",
 		body: formData,
-		query: { school_id: localStorage.getItem("school_id") },
+		auth: localStorage.getItem("token"),
 
 		onResponse: () => {
 			window.location.href = "all-classes.html";

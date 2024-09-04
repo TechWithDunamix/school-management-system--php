@@ -36,7 +36,8 @@ const deleteStudent = (studentId) => {
 
 	callApi("backend/students.php", {
 		method: "DELETE",
-		query: { school_id: localStorage.getItem("school_id"), student_id: studentId },
+		auth: localStorage.getItem("token"),
+		query: { student_id: studentId },
 
 		onResponse: () => {
 			select(`tr[data-student-id="${studentId}"]`).remove();
@@ -46,7 +47,8 @@ const deleteStudent = (studentId) => {
 
 const fetchAndDisplayStudentsDetails = () => {
 	callApi("backend/students.php", {
-		query: { school_id: localStorage.getItem("school_id") },
+		auth: localStorage.getItem("token"),
+
 		onError: ({ errorData, error }) => {
 			if (errorData) {
 				console.log(error.message);

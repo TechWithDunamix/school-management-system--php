@@ -21,10 +21,9 @@ const onSubmit = (event) => {
 	callApi("backend/teachers.php", {
 		method: teacher_id ? "PATCH" : "POST",
 		body: formObject,
-		query: {
-			school_id: localStorage.getItem("school_id"),
-			...(Boolean(teacher_id) && { teacher_id }),
-		},
+		auth: localStorage.getItem("token"),
+		query: teacher_id && { teacher_id },
+
 		onResponse: () => {
 			window.location.href = "all-teachers.html";
 		},
@@ -49,7 +48,7 @@ const onSubmit = (event) => {
 
 const fetchAndDisplayClassOptions = () => {
 	callApi("backend/class.php", {
-		query: { school_id: localStorage.getItem("school_id") },
+		auth: localStorage.getItem("token"),
 
 		onError: ({ errorData, error }) => {
 			if (errorData) {

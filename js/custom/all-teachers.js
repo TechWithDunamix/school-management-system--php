@@ -37,7 +37,8 @@ const deleteTeacher = (teacherId) => {
 
 	callApi("backend/teachers.php", {
 		method: "DELETE",
-		query: { school_id: localStorage.getItem("school_id"), teacher_id: teacherId },
+		auth: localStorage.getItem("token"),
+		query: { teacher_id: teacherId },
 		headers: localStorage.getItem("token"),
 
 		onResponse: () => {
@@ -48,7 +49,7 @@ const deleteTeacher = (teacherId) => {
 
 const fetchAndDisplayTeacherDetails = () => {
 	callApi("backend/teachers.php", {
-		query: { school_id: localStorage.getItem("school_id") },
+		auth: localStorage.getItem("token"),
 
 		onResponse: ({ data }) => {
 			if (data.data.length === 0) return;

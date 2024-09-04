@@ -36,7 +36,6 @@ const onSubmit = (event) => {
 		},
 
 		onResponse: ({ data }) => {
-			data.data?.school_id && localStorage.setItem("school_id", data.data.school_id);
 			data.data?.token && localStorage.setItem("token", data.data.token);
 
 			window.location.href = "index.html";

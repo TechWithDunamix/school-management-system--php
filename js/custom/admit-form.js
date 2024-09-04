@@ -18,10 +18,9 @@ const onSubmit = (event) => {
 	callApi("backend/students.php", {
 		method: student_id ? "PATCH" : "POST",
 		body: formObject,
-		query: {
-			school_id: localStorage.getItem("school_id"),
-			...(Boolean(student_id) && { student_id }),
-		},
+		auth: localStorage.getItem("token"),
+		query: student_id && { student_id },
+
 		onResponse: () => {
 			window.location.href = "all-students.html";
 		},
@@ -46,7 +45,7 @@ const onSubmit = (event) => {
 
 const fetchAndDisplayClassOptions = () => {
 	callApi("backend/class.php", {
-		query: { school_id: localStorage.getItem("school_id") },
+		auth: localStorage.getItem("token"),
 
 		onError: ({ errorData, error }) => {
 			if (errorData) {
@@ -73,10 +72,8 @@ fetchAndDisplayClassOptions();
 
 const populateLateForm = () => {
 	callApi("backend/students.php", {
-		query: {
-			school_id: localStorage.getItem("school_id"),
-			student_id,
-		},
+		auth: localStorage.getItem("token"),
+		query: { student_id },
 
 		onResponse: ({ data }) => {
 			const studentData = data.data;
