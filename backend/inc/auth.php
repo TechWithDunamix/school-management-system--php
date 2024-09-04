@@ -23,13 +23,37 @@ if (strpos($authHeader, 'Bearer ') === 0) {
 		$orm = new DatabaseHelper($db);
 
 		$user = $orm->selectWhere('Users', 'email = ?', [$userEmail]);
-		$obj = $user[0];
 
-		define("USER",$user[0]);
-		define("school_id",$obj->ref_id);
+		if (isset($user[0])) {
+			$obj = $user[0];
 
-		
-		
+			// Check if ref_id exists in the object
+			if (is_object($obj) && property_exists($obj, 'ref_id')) {
+				define("USER", $obj);
+				define("school_id", $obj->ref_id);
+
+				// Proceed with your logic here, as ref_id is defined
+				// ...
+			} else {
+				// Handle the case where ref_id doesn't exist
+				// header('HTTP/1.1 500 Internal Server Error');
+				// echo json_encode([
+				// 	'status' => 'error',
+				// 	'message' => 'Internal Server Error: ref_id not found in user data',
+				// ]);
+				// exit();
+				define("USER", $obj);
+				define("school_id", $obj->ref_id);
+			}
+		} else {
+			// Handle the case where user is not found
+			header('HTTP/1.1 404 Not Found');
+			echo json_encode([
+				'status' => 'error',
+				'message' => 'User not found',
+			]);
+			exit();
+		}
 	} else {
 		header('HTTP/1.1 401 Unauthorized');
 		echo json_encode([
