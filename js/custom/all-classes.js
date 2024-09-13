@@ -30,7 +30,6 @@ const deleteClass = (classId) => {
 		method: "DELETE",
 		auth: localStorage.getItem("token"),
 		query: { class_id: classId },
-		headers: localStorage.getItem("token"),
 
 		onResponse: () => {
 			select(`tr[data-class-id="${classId}"]`).remove();
