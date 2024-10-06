@@ -31,6 +31,11 @@ const createTeacherDetailsRow = (teacherData) => `<tr data-teacher-id=${teacherD
 									</tr>`;
 
 const deleteTeacher = (teacherId) => {
+	if (!teacherId) {
+		console.error("No teacher id provided");
+		return;
+	}
+
 	const shouldDelete = confirm("Are you sure you want to delete this teacher's record?");
 
 	if (!shouldDelete) return;
@@ -39,7 +44,6 @@ const deleteTeacher = (teacherId) => {
 		method: "DELETE",
 		auth: localStorage.getItem("token"),
 		query: { teacher_id: teacherId },
-		headers: localStorage.getItem("token"),
 
 		onResponse: () => {
 			select(`tr[data-teacher-id="${teacherId}"]`).remove();
@@ -62,16 +66,17 @@ const fetchAndDisplayTeacherDetails = () => {
 				.map((teacherData) => createTeacherDetailsRow(teacherData))
 				.join("");
 
+			tableBody.replaceChildren();
+
 			tableBody.insertAdjacentHTML("beforeend", htmlContent);
 
-			for (const teacherData of data.data) {
-				const deleteBtn = select(
-					`tr[data-teacher-id="${teacherData.id}"] [data-id="delete-btn"]`,
-					tableBody
-				);
+			tableBody.addEventListener("click", (event) => {
+				if (event.target.matches("[data-id='delete-btn'], [data-id='delete-btn'] *")) {
+					const teacherId = event.target.closest("[data-teacher-id]").dataset.teacherId;
 
-				deleteBtn.addEventListener("click", () => deleteTeacher(teacherData.id));
-			}
+					deleteTeacher(teacherId);
+				}
+			});
 		},
 
 		onError: ({ errorData, error }) => {

@@ -2,6 +2,8 @@ import { callApi, select } from "./lib.js";
 
 const loginForm = select("#login-form");
 
+console.log(loginForm);
+
 const onSubmit = (event) => {
 	event.preventDefault();
 

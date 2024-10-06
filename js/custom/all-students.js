@@ -23,13 +23,18 @@ const createStudentDetailsRow = (studentData) => `<tr data-student-id=${studentD
 																	><i class="fas fa-pencil-alt"></i
 																></a>
 																<button data-id="delete-btn" class="btn btn-danger shadow btn-xs sharp"
-																	><i class="fa fa-trash"></i
+																	><i class="fa fa-trash touch-none"></i
 																></button>
 															</div>
 										</td>
 									</tr>`;
 
 const deleteStudent = (studentId) => {
+	if (!studentId) {
+		console.error("No student id provided");
+		return;
+	}
+
 	const shouldDelete = confirm("Are you sure you want to delete this student's record?");
 
 	if (!shouldDelete) return;
@@ -64,22 +69,20 @@ const fetchAndDisplayStudentsDetails = () => {
 
 			const tableBody = select("#table-body");
 
-			select(".odd", tableBody)?.remove();
-
 			const htmlContent = data.data
 				.map((studentData) => createStudentDetailsRow(studentData))
 				.join("");
 
+			tableBody.replaceChildren();
 			tableBody.insertAdjacentHTML("beforeend", htmlContent);
 
-			for (const studentData of data.data) {
-				const deleteBtn = select(
-					`tr[data-student-id="${studentData.id}"] [data-id="delete-btn"]`,
-					tableBody
-				);
+			tableBody.addEventListener("click", (event) => {
+				if (!event.target.matches("[data-id='delete-btn'], [data-id='delete-btn'] *")) return;
 
-				deleteBtn.addEventListener("click", () => deleteStudent(studentData.id));
-			}
+				const studentId = event.target.closest("[data-student-id]").dataset.studentId;
+
+				deleteStudent(studentId);
+			});
 		},
 	});
 };
