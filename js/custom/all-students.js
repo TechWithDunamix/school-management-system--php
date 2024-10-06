@@ -51,7 +51,7 @@ const fetchAndDisplayStudentsDetails = () => {
 
 		onError: ({ errorData, error }) => {
 			if (errorData) {
-				console.log(error.message);
+				console.log(errorData.message);
 				return;
 			}
 
